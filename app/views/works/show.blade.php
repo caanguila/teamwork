@@ -1,1 +1,8 @@
-/var/www/html/caanguila/teamwork/app/views/works/show.blade.php
+@extends('layouts.default')
+@section('content')
+  <h1>
+    {{{ $work->title }}}
+  </h1>
+
+  {{{ $work->description }}}
+@stop
