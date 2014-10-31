@@ -15,3 +15,6 @@ Route::get('/', function()
 {
 return View::make('layouts.default');
 });
+
+Route::resource('members', 'MembersController');
+Route::resource('works', 'WorksController');
