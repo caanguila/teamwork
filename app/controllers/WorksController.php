@@ -9,7 +9,7 @@ class WorksController extends \BaseController {
 	 */
 	public function index()
 	{
-		$works = Work::all();
+		$works = Work::orderBy('enddate','asc')->get();
 
 		return View::make('works.index', compact('works'));
 	}
@@ -21,7 +21,8 @@ class WorksController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('works.create');
+		$members = Member::lists('name','id');
+		return View::make('works.create',compact('members'));
 	}
 
 	/**
@@ -66,7 +67,9 @@ class WorksController extends \BaseController {
 	{
 		$work = Work::find($id);
 
-		return View::make('works.edit', compact('work'));
+		$members = Member::lists('name','id');
+
+		return View::make('works.edit', compact('work','members'));
 	}
 
 	/**
