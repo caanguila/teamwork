@@ -99,9 +99,20 @@ class MembersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Member::destroy($id);
+		$count = Work::where('member_id', '=', $id)->count();
+		
+		if($count > 0){
+		
+			$member = Member::findOrFail($id);
+		
+			return Redirect::back()->with('errorFk', "<b>$member->name $member->lastname</b> still got work to do!!");
+		
+		}else{
+		
+			Member::destroy($id);
 
-		return Redirect::route('members.index');
+			return Redirect::route('members.index');
+		}
 	}
 
 }
